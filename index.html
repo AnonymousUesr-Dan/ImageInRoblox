@@ -1,0 +1,83 @@
+<html><head>
+    <style>
+        .content {
+            position: relative;
+            text-align: center;
+            width: 800px;
+            top: 50px;
+            font-size: 20px;
+            margin: 0 auto;
+        }
+        h1, h2, h3, h4, h5, h6, ul, ui, p {
+            color:white;
+            font-family:Verdana;
+            text-align: center;
+        }
+        textarea {
+          background-color: #18181a;
+          color:#fff;
+          text-align: center;
+          position: relative;
+          margin: 0 auto;
+        }
+        button {
+          text-align: center;
+          position: relative;
+          margin: 0 auto;
+          background-color: #18181a;
+          border-color: #fff;
+          border-width: 1;
+          padding: 5;
+          color:#fff;
+        }
+    </style>     
+    <title>Server</title>
+    </head>
+    <body style="background-color:#18181a;">
+        <div class="content">
+            <h3 id="stats" style="color: rgb(252, 3, 3);">Server Offline!</h3>
+            <h4>Image URL:</h4>
+            <textarea id="imagelink" rows="1" cols="80"></textarea>
+            <br>
+            <br>
+            <button onclick="sendimage()">Send Image</button>
+            <h5 id="sendstats"></h5>
+			<p>Made by Dan_foodz</p>
+            <script>
+                function sendimage() {
+                    const Httpu = new XMLHttpRequest();
+					// replace 127.0.0.1 with the ip/domain you are using
+                    const url='http://127.0.0.1/api/upload?imagelink='+document.getElementById("imagelink").value;
+                    Httpu.open("GET", url);
+                    Httpu.onreadystatechange = (e) => {
+                        console.log(Http.status)
+                        if (Http.status == 200) {
+                            document.getElementById("sendstats").innerHTML = "Successfully Sent!"
+                            document.getElementById("sendstats").style.color="#03fc0f";
+                        } else {
+                            document.getElementById("sendstats").innerHTML = "Server Offline!"
+                            document.getElementById("sendstats").style.color="#fc0303";
+                            document.getElementById("stats").innerHTML = "Server Offline!"
+                            document.getElementById("stats").style.color="#fc0303";
+                        }
+                    } 
+                    Httpu.send();
+                }
+
+                const Http = new XMLHttpRequest();
+                const url='http://127.0.0.1/api/online';  // replace 127.0.0.1 with the ip/domain you are using
+                Http.open("GET", url);
+                Http.onreadystatechange = (e) => {
+                    if (Http.status == 200) {
+                        document.getElementById("stats").innerHTML = "Server Online!"
+                        document.getElementById("stats").style.color="#03fc0f";
+                    } else {
+                        document.getElementById("stats").innerHTML = "Server Offline!"
+                        document.getElementById("stats").style.color="#fc0303";
+                    }
+                }  
+               Http.send();
+            </script>
+      </div>
+</body>
+</html>
