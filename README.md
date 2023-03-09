@@ -37,5 +37,4 @@ Put `ImageLoader.rbxm` into the Roblox Game (A test game, not a real game)
 Next:
 Go into `index.html`, `ImageLoader.py`, `Server.py`, and the script inside of `ImageLoader.rbxm`, and follow the comments inside.
 
-Questions? Find a way to contact me at https://danfoodz.rbx.ac
-
+Questions? Find a way to contact me at https://danfoodz.github.io
